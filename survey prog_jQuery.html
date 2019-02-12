@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<link rel="stylesheet" type="text/css" href="survey prog.css">
+
+</head>
+
+<body>
+
+<div id="header">
+	<p>This is a website showing some examples I've encountered needed in Survey programming on platforms that did not support mutually exclusive options. <br/>(<span class="blink_me">jQuery</span>)</p>
+</div>
+
+<div id="content">
+	<textarea id="tArea"></textarea><br/>
+	<input type="checkbox" id="tArea_checkbox">Disable/enable the textarea</input>
+
+	<hr/>
+
+	<table>
+	<caption><b>This table is mobile responsive - it will rearange if the screen is too small.<b></caption>
+	  <tr>
+		<td>Row 1</td>
+		<td><input class="table1Class" type="radio">Option 1</input></td>
+		<td><input class="table1Class" type="radio">Option 4</input></td>
+	  </tr>
+	  <tr>
+		<td>Row 2</td>
+		<td><input class="table1Class" type="radio">Option 2</input></td>
+		<td><input class="table1Class" type="radio">Option 5</input></td>
+	  </tr>
+	  <tr>
+		<td>Row 3</td>
+		<td><input class="table1Class" type="radio">Option 3</input></td>
+		<td><input class="table1Class" type="radio">Option 6</input></td>
+	  </tr>
+	</table><br/>
+	<input id="checkB" type="checkbox">Unclick the grid above</input>
+	<hr/>
+
+	<b>Type the number for women. The men will be filled automatically from 100 minus women.</b><br/>
+	<input class="numericClass" type="number" disabled="true"/>Men<br/>
+	<input class="numericClass" type="number"/>Women
+
+	<hr/>
+
+	<b>Show/hide question:</b>
+	<div id="Q1">
+		<p>See the next question?</p>
+		<input type="radio" id="r1">Yes</input><br/>
+		<input type="radio" id="r2">No</input>
+	</div>
+
+	<div id="Q2">
+		<p>Please choose all that apply.</p>
+		<input class="Q2Checkboxes" type="checkbox">1</input><br/>
+		<input class="Q2Checkboxes" type="checkbox">2</input><br/>
+		<input class="Q2Checkboxes" type="checkbox">3</input><br/>
+		<input class="Q2Checkboxes" type="checkbox">4</input><br/>
+		<input class="Q2Checkboxes" type="checkbox">5</input><br/>
+		<input class="Q2Checkboxes" type="checkbox">6</input>
+	</div>
+
+	<hr/>
+
+	<table>
+	  <tr>
+		<td>Row 1</td>
+		<td>Option 1<input id="num1" type="numeric"></input></td>
+		<td><input id="checkbox1" type="checkbox">Clear row 1</input></td>
+	  </tr>
+	  <tr>
+		<td>Row 2</td>
+		<td>Option 2<input id="num2" type="txt"></input></td>
+		<td><input id="checkbox2" type="checkbox">Clear row 2</input></td>
+	  </tr>
+	</table>
+	<hr/>
+
+	Click on the image to enlarge it:<br/>
+	<img id="sun" src="sun.gif" style="width:200px;cursor:pointer;"/>
+
+	<hr/>
+
+	Carousel:
+	<table>
+	  <tr id="row1">
+		<td>Row 1</td>
+		<td>Option 1<input id="option1" type="radio"></input></td>
+		<td>Option 2<input id="option2" type="radio"></input></td>
+	  </tr>
+	  <tr id="row2">
+		<td>Row 2</td>
+		<td>Option 3<input id="option3" type="radio"></input></td>
+		<td>Option 4<input id="option4" type="radio"></input></td>
+	  </tr>
+	  <tr id="row3">
+		<td>Row 3</td>
+		<td>Option 5<input id="option5" type="radio"></input></td>
+		<td>Option 6<input id="option6" type="radio"></input></td>
+	  </tr>
+	  <tr id="row4">
+		<td>Row 4</td>
+		<td>Option 7<input id="option7" type="radio"></input></td>
+		<td>Option 8<input id="option8" type="radio"></input></td>
+	  </tr>
+	</table>
+	
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+//disable/enable textarea with a click
+var count = 0;
+$("#tArea_checkbox").click(function(){
+if(count%2==0){
+	$("#tArea").prop('disabled', true);
+	$("#tArea").val('');
+	}
+	else{
+		$("#tArea").prop('disabled', false);
+	}
+	count++;
+});
+
+
+$(".table1Class").click(function(){
+	$("#checkB").prop("checked", false);
+});
+
+$("#checkB").click(function(){
+	$(".table1Class").prop("checked", false);
+});
+
+$("input[type=number]").keyup(function(){
+	var men = document.getElementsByClassName("numericClass")[0];
+	var women = document.getElementsByClassName("numericClass")[1];
+
+		if(women.value>100){
+			women.value=100;
+			men.value=0;
+		}
+		else if(women.value<0){
+			women.value=0;
+			men.value=100;
+		}
+		else{
+			men.value=100-women.value;
+		}
+});
+
+
+$("#Q2").hide();
+$("#r1").click(function(){
+	$("#Q2").show('fade');
+	$("#r2").prop("checked", false);
+});
+
+$("#r2").click(function(){
+	$("#Q2").hide('fade');
+	$("#r1").prop("checked", false);
+	for(var i=0; i<5; i++){
+		$(".Q2Checkboxes").prop("checked", false);
+	}
+});
+
+$("#checkbox1").click(function(){
+	$("#num1").val('');
+});
+
+
+$("#num1").keyup(function(){
+	var x = $("#num1").val();
+	if(x.length > 0){
+		$("#checkbox1").prop("checked", false);
+	}
+});
+
+$("#checkbox2").click(function(){
+	$("#num2").val('');
+});
+
+
+$("#num2").keyup(function(){
+	var x = $("#num2").val();
+	if(x.length > 0){
+		$("#checkbox2").prop("checked", false);
+	}
+});
+
+var imgCounter = 0;
+$("#sun").click(function(){
+	if(imgCounter%2==0){
+		$("#sun").width(500+"px");
+	}
+	else{
+		$("#sun").width(300+"px");
+	}
+	imgCounter++;
+});
+
+$("#row2").hide();
+$("#row3").hide();
+$("#row4").hide();
+$("input[type=radio]").click(function(){
+	if($('#option1').is(':checked') || $('#option2').is(':checked')){
+		$("#row2").show('fade');
+	}
+	if($('#option3').is(':checked') || $('#option4').is(':checked')){
+		$("#row3").show('fade');
+	}
+	if($('#option5').is(':checked') || $('#option6').is(':checked')){
+		$("#row4").show('fade');
+	}
+});
+
+//Set IDs for elements in a for loop
+var els = document.querySelectorAll('input[class=Q2Checkboxes]');
+for (var i=0; i < els.length; i++) {
+    els[i].setAttribute("id", "idi"+(i+1));
+}
+
+</script>
+
+</body>
+</html>

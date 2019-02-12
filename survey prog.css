@@ -1,0 +1,52 @@
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+body{
+	font-family: calibri;
+	background: radial-gradient(ellipse at bottom, rgba(32,88,110, 0.7) 0%, #090a0f 100%);
+	color:white;
+}
+#header{
+	border: 2px solid yellow;
+	border-radius: 35px;
+	margin-bottom:1%;
+	text-align:center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+#content{
+	padding: 5%;
+	border: 2px solid yellow;
+	border-radius: 35px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 2px;
+  text-align: left;
+}
+.numericClass{
+	width:50px;
+}
+
+textarea, #num1, #num2{
+	border-radius: 15px;
+	outline-color: transparent;
+}
+textarea{
+	height:70px;
+	width:300px;
+}
+@media screen and (max-width: 600px) {
+	table {width:100%;}
+	tbody td {display: block; text-align:center;}
+	textarea{
+		height:60px;
+		width:200px;
+	}
+}
