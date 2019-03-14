@@ -170,9 +170,11 @@ var imgCounter = 0;
 function imgEnlarge(){
 	if(imgCounter%2==0){
 		document.getElementById("sun").style.width = "500px";
+		document.getElementById("sun").style.transition = "2s";
 	}
 	else{
 		document.getElementById("sun").style.width = "300px";
+		document.getElementById("sun").style.transition = "2s";
 	}
 	imgCounter++;
 }
