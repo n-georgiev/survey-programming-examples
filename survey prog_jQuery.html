@@ -192,10 +192,10 @@ $("#num2").keyup(function(){
 var imgCounter = 0;
 $("#sun").click(function(){
 	if(imgCounter%2==0){
-		$("#sun").width(500+"px");
+		$("#sun").animate({width: '500px'});
 	}
 	else{
-		$("#sun").width(300+"px");
+		$("#sun").animate({width: '300px'});
 	}
 	imgCounter++;
 });
